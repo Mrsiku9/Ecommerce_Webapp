@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import "./styles/app.scss";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
+import Login from "./pages/Login";
 
 
 const Home = lazy(() => import("./pages/Home"));
@@ -39,8 +40,15 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/tania" element={<Header />} />
+          <Route path="/" element={<Header />} />
           <Route path="/shipping" element={<Shipping/>} />
+
+       {/*
+      when user not login 
+  */}
+    <Route path="/login" element={<Login/>} />
+
+
           {/* Admin Routes*/}
           <Route
           // element={

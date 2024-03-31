@@ -1,47 +1,81 @@
-import { ChangeEvent, useState } from "react"
-import { BiArrowBack } from "react-icons/bi"
+import { ChangeEvent, useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {
-    const [shippingInfo,setShippingInfo] = useState({
-adress:"",
-city:"",
-state:"",
-pinCode:"",
+  const navigate = useNavigate();
+  const [shippingInfo, setShippingInfo] = useState({
+    adress: "",
+    city: "",
+    state: "",
+    country: "",
+    pinCode: "",
+  });
 
-
-    })
-
-    const changeHandler =(e:ChangeEvent <HTMLInputElement | HTMLSelectElement>) => {
-        setShippingInfo((prev)=> ( {...prev,[e.target.name]:e.target.value}))
-
-    }
-
+  const changeHandler = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setShippingInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   return (
     <div className="shipping">
-        <div>
-            <button> <BiArrowBack/> </button>
-        </div>
-        
-        <form action="">
-        <h1>Shipping Address</h1>
-            <input type="text" placeholder="Address" name="adress" value={shippingInfo.adress} onChange={changeHandler} />
-        </form>
-        <form action="">
-            <input type="text" placeholder="City"  name="city"  value={shippingInfo.city} onChange={changeHandler} />
-        </form>
-        <form action="">
-            <input type="text" placeholder="State" name="state" value={shippingInfo.state} onChange={changeHandler} />
-        </form>
-        <form action="">
-            <input type="text" placeholder="Category" name="" value={shippingInfo.adress} onChange={changeHandler} />
-        </form>
-        <form action="">
-            <input type="number" placeholder="PinCode"  name="" value={shippingInfo.pinCode} onChange={changeHandler} />
-        </form>
-     
-    </div>
-  )
-}
+      <button className="back-btn" onClick={() => navigate("/cart")}>
+        <BiArrowBack />{" "}
+      </button>
 
-export default Shipping
+      <form>
+        <h1>Shipping Address</h1>
+        <input
+          required
+          type="text"
+          placeholder="Address"
+          name="adress"
+          value={shippingInfo.adress}
+          onChange={changeHandler}
+        />
+
+        <input
+          required
+          type="text"
+          placeholder="City"
+          name="city"
+          value={shippingInfo.city}
+          onChange={changeHandler}
+        />
+
+        <input
+          required
+          type="text"
+          placeholder="State"
+          name="state"
+          value={shippingInfo.state}
+          onChange={changeHandler}
+        />
+
+        <select
+          required
+          name="country"
+          value={shippingInfo.country}
+          onChange={changeHandler}
+        >
+          <option value="">Choose Country</option>
+          <option value="india">India</option>
+          <option value="russia">Russia</option>
+        </select>
+
+        <input
+          required
+          type="number"
+          placeholder="PinCode"
+          name="pinCode"
+          value={shippingInfo.pinCode}
+          onChange={changeHandler}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default Shipping;

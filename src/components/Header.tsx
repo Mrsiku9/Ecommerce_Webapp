@@ -1,11 +1,12 @@
 // import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaShoppingBag, FaSignInAlt, FaUser } from "react-icons/fa";
 import { useState } from "react"
 
-const user = { _id:"rytryr", role: "admin" };
+const user = { _id:null, role:"admin" };
 const Header = () => {
-  const [isOpen,setIsOpen] = useState<boolean>(false)
+  const navigate = useNavigate()
+  const [isOpen,setIsOpen] = useState<boolean>(true)
   return (
     <nav className="header">
       <Link onClick={()=> setIsOpen(false)} to={"/"}>HOME</Link>
@@ -30,7 +31,7 @@ const Header = () => {
           </dialog>
         </>
       ) : (
-        <button>
+        <button onClick={()=> navigate("/login")}>
           <FaSignInAlt />
           
         </button>
